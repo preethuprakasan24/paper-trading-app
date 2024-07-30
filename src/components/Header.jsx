@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 const pages = ["Dashboard", "Orders", "Holdings", "Position", "Funds"];
 const settings = ["Profile", "Account", "Logout"];
 
-function Header() {
+function Header({ setSelectedPage }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,7 +38,7 @@ function Header() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: "none", md: "flex" },  }}>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <img
               src="https://play-lh.googleusercontent.com/1fqfkcrgQLhVdNrpqsLqoIgY2Kzd3g9CyOWj80h7s_mGi_OxUWpS3VyuljbuQLfNao8"
               alt="Logo"
@@ -94,7 +94,13 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    setSelectedPage(page);
+                  }}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -122,7 +128,7 @@ function Header() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => setSelectedPage(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
