@@ -1,9 +1,71 @@
-import React from 'react'
+import React from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+
+const style = {
+  p: 0,
+  width: "100%",
+  maxWidth: "100%",
+  borderRadius: 0,
+  border: "1px solid",
+  borderColor: "divider",
+  backgroundColor: "background.lightgrey",
+};
 
 function WatchListItem() {
   return (
-    <div>WatchListItem</div>
-  )
+    <List sx={style} aria-label="mailbox folders">
+      <ListItem>
+        <ListItemText primary="Inbox" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Drafts" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Trash" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem>
+      <Divider component="li" />
+      {/* <ListItem>
+        <ListItemText primary="Spam" />
+      </ListItem> */}
+    </List>
+  );
 }
 
-export default WatchListItem
+export default WatchListItem;
