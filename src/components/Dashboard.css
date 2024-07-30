@@ -1,0 +1,15 @@
+.line-height-sm{
+    font-size: 48px;
+}
+
+@media (max-width: 576px) { 
+    .line-height-sm {
+      line-height: 1.0; 
+      font-size: 36px;
+    }
+  }
+
+.bar1{
+    background-color: rgb(79, 190, 209);
+}
+  
