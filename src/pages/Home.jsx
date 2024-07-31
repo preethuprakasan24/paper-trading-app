@@ -1,24 +1,3 @@
-// import React from "react";
-// import WatchList from "../components/WatchList";
-// import Dashboard from "../components/Dashboard";
-
-// function Home() {
-//   return (
-//     <div>
-//       <div className="row">
-//         <div className="col-md-3">
-//           <WatchList />
-//         </div>
-//         <div className="col-md-9">
-//           <Dashboard />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Home;
-
 import React, { useState } from "react";
 import WatchList from "../components/WatchList";
 import Dashboard from "../components/Dashboard";
@@ -27,6 +6,7 @@ import Holdings from "../components/Holdings";
 import Position from "../components/Position";
 import Funds from "../components/Funds";
 import Header from "../components/Header";
+import Profile from "../pages/Profile";
 
 function Home() {
   const [selectedPage, setSelectedPage] = useState("Dashboard");
@@ -43,6 +23,8 @@ function Home() {
         return <Position />;
       case "Funds":
         return <Funds />;
+      case "Profile":
+        return <Profile />;
       default:
         return <Dashboard />;
     }
