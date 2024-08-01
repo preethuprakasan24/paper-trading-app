@@ -9,18 +9,18 @@ import "./Dashboard.css";
 import { getBalanceApi } from '../services/allApi';
 
 function Dashboard() {
-  const [data, setData] = useState(false)
+  // const [data, setData] = useState(false)
 
-  const getData = async()=>{
-    const result = await getBalanceApi()
-    setData(result.data[0].accounts[0])
+  // const getData = async()=>{
+  //   const result = await getBalanceApi()
+  //   setData(result.data[0].accounts[0])
     
-  }
-  console.log(data);
+  // }
+  // console.log(data);
 
-  useState(()=>{
-    getData()
-  },[data])
+  // useState(()=>{
+  //   getData()
+  // },[data])
   return (
     <Container fluid className='shadow'>
       {/* First Section */}
@@ -33,7 +33,7 @@ function Dashboard() {
               <p><FontAwesomeIcon icon={faChartPie} className='me-3' />Equity</p>
               <Row>
                 <Col xs={6} md={5} className="border-end pe-md-3 mb-3 mb-md-0">
-                  <h1 className='overflow-hidden'>{data?.balance}</h1>
+                  <h1 className='overflow-hidden'>1L</h1>
                   <p className="text-muted mb-0" style={{ fontSize: '14px' }}>Margin available</p>
                 </Col>
                 <Col xs={6} md={7}>
