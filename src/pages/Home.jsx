@@ -18,7 +18,6 @@
 // }
 
 // export default Home;
-
 import React, { useState } from "react";
 import WatchList from "../components/WatchList";
 import Dashboard from "../components/Dashboard";
@@ -27,12 +26,16 @@ import Holdings from "../components/Holdings";
 import Position from "../components/Position";
 import Funds from "../components/Funds";
 import Header from "../components/Header";
+import Auth from "./Auth";
 
 function Home() {
-  const [selectedPage, setSelectedPage] = useState("Dashboard");
+  // Initialize selectedPage to "Home" to show Auth page on load
+  const [selectedPage, setSelectedPage] = useState("Home");
 
   const renderContent = () => {
     switch (selectedPage) {
+      case "Home":
+        return <Auth />;
       case "Dashboard":
         return <Dashboard />;
       case "Orders":
@@ -44,13 +47,14 @@ function Home() {
       case "Funds":
         return <Funds />;
       default:
-        return <Dashboard />;
+        return <Auth />;
     }
   };
 
   return (
     <div>
       <Header setSelectedPage={setSelectedPage} />
+      
       <div className="row">
         <div className="col-md-3">
           <WatchList />
