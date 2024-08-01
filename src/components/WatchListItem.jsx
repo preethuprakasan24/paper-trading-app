@@ -16,7 +16,7 @@ const style = {
 
 function WatchListItem() {
   return (
-    <List sx={style} aria-label="mailbox folders">
+    <List sx={style} aria-label="mailbox folders" id="wishlistItem">
       <ListItem>
         <ListItemText primary="Inbox" />
       </ListItem>
