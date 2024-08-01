@@ -6,7 +6,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 import LineChart from './LineChart';
 import BarChart from './BarChart';
 import "./Dashboard.css";
+
+import Auth from '../pages/Auth';
+
 import { getBalanceApi } from '../services/allApi';
+
 
 function Dashboard() {
   // const [data, setData] = useState(false)
@@ -27,6 +31,7 @@ function Dashboard() {
       <Row className="m-4">
         <Col xs={12}>
           <p className='fs-4'>Hi, Demo</p>
+          {/* <Auth /> */}
           <hr />
           <Row className='mt-5'>
             <Col xs={12} md={6} className=''>
