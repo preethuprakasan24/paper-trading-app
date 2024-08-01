@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
 
-const pages = ["Home", "Dashboard", "Orders", "Holdings", "Position", "Funds", "Profile"];
+const pages = ["Dashboard", "Orders", "Holdings", "Position", "Funds", "Profile"];
 const settings = ["Logout"];
 
 function Header({ setSelectedPage }) {
