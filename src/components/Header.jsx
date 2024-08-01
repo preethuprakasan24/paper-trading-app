@@ -13,11 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
 
-const pages = ["Home", "Dashboard", "Orders", "Holdings", "Position", "Funds", "Profile"];
+const pages = ["Dashboard", "Orders", "Holdings", "Position", "Funds", "Profile"];
 const settings = ["Logout"];
-=======
-
-
 
 function Header({ setSelectedPage }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -46,7 +43,7 @@ function Header({ setSelectedPage }) {
             <img
               src="https://play-lh.googleusercontent.com/1fqfkcrgQLhVdNrpqsLqoIgY2Kzd3g9CyOWj80h7s_mGi_OxUWpS3VyuljbuQLfNao8"
               alt="Logo"
-              style={{ height: "50px" }} // Adjust the height to your preference
+              style={{ height: "50px" }} 
             />
           </Box>
           <Typography
