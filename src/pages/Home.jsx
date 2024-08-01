@@ -3,7 +3,6 @@ import WatchList from "../components/WatchList";
 import Dashboard from "../components/Dashboard";
 import Orders from "../components/Orders";
 import Holdings from "../components/Holdings";
-import Position from "../components/Position";
 import Funds from "../components/Funds";
 import Header from "../components/Header";
 import Profile from "../pages/Profile";
@@ -19,8 +18,6 @@ function Home() {
         return <Orders />;
       case "Holdings":
         return <Holdings />;
-      case "Position":
-        return <Position />;
       case "Funds":
         return <Funds />;
       case "Profile":
