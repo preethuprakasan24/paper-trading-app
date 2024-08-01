@@ -132,13 +132,15 @@ function WatchList() {
     { label: "Monty Python and the Holy Grail", year: 1975 },
   ];
   return (
-    <div className="" style={{backgroundColor:"lightgray"}}>
+    <div className="shadow" style={{backgroundColor:"#272b30", color:"white", marginLeft:"12px"}}>
       <Autocomplete
         disablePortal
         id="combo-box-demo"
         options={top100Films}
         sx={{ width: "100%" }}
-        renderInput={(params) => <TextField {...params} label="Movie" />}
+        renderInput={(params) => <TextField {...params} label="Search"  InputLabelProps={{
+          style: { color: 'white' }, // Set the label text color to white
+        }} />}
       />
 
       <WatchListItem />

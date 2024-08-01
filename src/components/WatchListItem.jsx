@@ -16,7 +16,7 @@ const style = {
 
 function WatchListItem() {
   return (
-    <List sx={style} aria-label="mailbox folders">
+    <List sx={style} aria-label="mailbox folders" id="wishlistItem">
       <ListItem>
         <ListItemText primary="Inbox" />
       </ListItem>
@@ -60,7 +60,7 @@ function WatchListItem() {
       <ListItem>
         <ListItemText primary="Spam" />
       </ListItem>
-      <Divider component="li" />
+      <Divider component="li" style={{color:"#7a8288"}} />
       {/* <ListItem>
         <ListItemText primary="Spam" />
       </ListItem> */}

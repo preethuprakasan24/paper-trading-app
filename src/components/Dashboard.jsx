@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartPie, faDroplet, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -6,11 +6,27 @@ import { Container, Row, Col } from 'react-bootstrap';
 import LineChart from './LineChart';
 import BarChart from './BarChart';
 import "./Dashboard.css";
+
 import Auth from '../pages/Auth';
 
+import { getBalanceApi } from '../services/allApi';
+
+
 function Dashboard() {
+  // const [data, setData] = useState(false)
+
+  // const getData = async()=>{
+  //   const result = await getBalanceApi()
+  //   setData(result.data[0].accounts[0])
+    
+  // }
+  // console.log(data);
+
+  // useState(()=>{
+  //   getData()
+  // },[data])
   return (
-    <Container fluid>
+    <Container fluid className='shadow'>
       {/* First Section */}
       <Row className="m-4">
         <Col xs={12}>
