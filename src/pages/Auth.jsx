@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import './Auth.css';
 import { Link } from 'react-router-dom';
@@ -10,13 +10,31 @@ function Auth() {
   const [register, setRegister] = useState(false);
 
   return (
-    <div className="login">
-      <form action="" className="login__form">
-        <h1 className="login__title">{register ? 'Register' : 'Login'}</h1>
+    <div className="login bgd_a">
+      <form action="" className="login__form shadow">
+        <h1 className="login__title text-warning">{register ? 'Register' : 'Login'}</h1>
 
         <div className="login__content">
-          <div className="login__box">
+{register &&        <div className="login__box">
             <FontAwesomeIcon icon={faUser} className="login__icon" />
+
+            <div className="login__box-input">
+              <input
+                type="email"
+                required
+                className="login__input"
+                id="login-email"
+                placeholder=" "
+              />
+              <label htmlFor="login-email" className="login__label">
+                Username
+              </label>
+            </div>
+          </div>}
+
+          <div className="login__box">
+          <FontAwesomeIcon icon={faEnvelope} className="login__icon" />
+
 
             <div className="login__box-input">
               <input
@@ -50,27 +68,13 @@ function Auth() {
           </div>
         </div>
 
-        <div className="login__check">
-          <div className="login__check-group">
-            <input
-              type="checkbox"
-              className="login__check-input"
-              id="login-check"
-            />
-            <label htmlFor="login-check" className="login__check-label">
-              Remember me
-            </label>
-          </div>
 
-          <a href="#" className="login__forgot">
-            Forgot Password?
-          </a>
-        </div>
-
-        <button type="submit" className="login__button">
-          {register ? 'Register' : 'Login'}
-        </button>
-
+        <Link to={'/landingpage'}>
+          <button type="submit" className="login__button">
+            {register ? 'Register' : 'Login'}
+          </button>
+  
+        </Link>
         <p className="login__register">
           {register ? (
             <>Already have an account? <Link onClick={() => setRegister(false)}>Login</Link></>
