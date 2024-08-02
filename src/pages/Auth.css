@@ -4,7 +4,7 @@
 :root {
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
-  --white-color: hsl(0, 0%, 100%);
+  --white-color: hsl(0, 0%, 7%);
   --black-color: hsl(0, 0%, 0%);
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
@@ -31,7 +31,15 @@ button {
 }
 
 body {
-  color: var(--white-color);
+  color: var(--black-color);
+}
+
+.bgd_a{
+  background-image: url('https://codeinspiration.pro/wp-content/themes/theme_ci_prod/img/verticals/TradingBG.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 input,
@@ -65,12 +73,15 @@ img {
 }
 .login__form {
   position: relative;
-  background-color: hsla(0, 0%, 10%, 0.1);
-  border: 2px solid var(--white-color);
+  background-color: rgba(183, 182, 182, 0.463);
+  border: 2px solid rgba(183, 182, 182, 0.463);
+  box-shadow: 10px;
   margin-inline: 1.5rem;
   padding: 2.5rem 1.5rem;
   border-radius: 1rem;
   backdrop-filter: blur(8px);
+  color: var(--white-color);
+
 }
 .login__title {
   text-align: center;
@@ -153,7 +164,8 @@ img {
   width: 100%;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: var(--white-color);
+  background-color: #1976d2;
+  color: white;
   font-weight: var(--font-medium);
   cursor: pointer;
   margin-bottom: 2rem;
