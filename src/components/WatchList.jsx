@@ -44,6 +44,8 @@ function WatchList() {
     { label: "NIFTY MIDCAP 100" },
     { label: "NIFTY MIDCAP 100" },
   ];
+
+  
   return (
     <div
       className="shadow"

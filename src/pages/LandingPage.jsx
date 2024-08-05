@@ -5,6 +5,7 @@ import Orders from "../components/Orders";
 import Holdings from "../components/Holdings";
 import Funds from "../components/Funds";
 import Header from "../components/Header";
+import Footer from '../components/Footer';
 import Profile from "../pages/Profile";
 
 function LandingPage() {
@@ -27,6 +28,8 @@ function LandingPage() {
     }
   };
 
+  
+
   return (
     <div>
       <Header setSelectedPage={setSelectedPage} />
@@ -37,6 +40,7 @@ function LandingPage() {
         </div>
         <div className="col-md-9">{renderContent()}</div>
       </div>
+      <Footer />
     </div>
   );
 }

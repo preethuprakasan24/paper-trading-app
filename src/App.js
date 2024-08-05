@@ -2,7 +2,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 // import Header from './components/Header';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" element={<Auth />} />
         <Route path="/landingpage" element={<LandingPage/>} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import logo from '../assets/logo.png'
 
 const pages = ["Dashboard", "Orders", "Holdings", "Funds", "Profile"];
 const settings = ["Logout"];
@@ -40,7 +41,7 @@ function Header({ setSelectedPage }) {
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <img
-              src="https://play-lh.googleusercontent.com/1fqfkcrgQLhVdNrpqsLqoIgY2Kzd3g9CyOWj80h7s_mGi_OxUWpS3VyuljbuQLfNao8"
+              src={logo}
               alt="Logo"
               style={{ height: "50px" }}
             />
