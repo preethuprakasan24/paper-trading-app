@@ -32,9 +32,9 @@ function WatchListItem() {
           <BuyStock />
           <SellStock />
           <button
-            className="btn   ms-3"
+            className="btn  ms-2 "
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -66,7 +66,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -98,7 +98,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -130,7 +130,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -162,7 +162,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -194,7 +194,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -226,7 +226,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -258,7 +258,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -290,7 +290,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -322,7 +322,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -354,7 +354,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -386,7 +386,7 @@ function WatchListItem() {
           <button
             className="btn   ms-2"
             style={{
-              width: "60px",
+              width: "48px",
               height: "20px",
               fontSize: "12px",
               textAlign: "center",
@@ -405,53 +405,6 @@ function WatchListItem() {
         </div>
       </div>
       <Divider component="li" />
-      {/* <ListItem>
-        <ListItemText primary="NIFTY MIDCAP 100" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Drafts" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Trash" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" />
-      <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem>
-      <Divider component="li" style={{ color: "#7a8288" }} /> */}
-      {/* <ListItem>
-        <ListItemText primary="Spam" />
-      </ListItem> */}
     </List>
   );
 }

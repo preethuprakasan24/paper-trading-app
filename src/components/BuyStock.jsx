@@ -15,7 +15,7 @@ function BuyStock() {
           className="btn "
           onClick={handleShow}
           style={{
-            width: "80px",
+            width: "48px",
             height: "20px",
             fontSize: "12px",
             textAlign: "center",

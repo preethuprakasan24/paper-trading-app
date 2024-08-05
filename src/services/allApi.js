@@ -1,15 +1,15 @@
 import { commonAPI } from "./commonApi"
 import { serverUrl } from "./serverUrl"
 
-//api to add video
 
-// export const allVideoApi = async (reqBody) => {
-//     return await commonAPI('POST', `${serverUrl}/allVideos`, reqBody)
-// }
+
+export const registerApi = async (reqBody) => {
+    return await commonAPI('POST', `${serverUrl}/users`, reqBody)
+}
 
 //api to get video
-export const getBalanceApi = async () => {
-    return await commonAPI('GET', `${serverUrl}/users`, "")
+export const getUserApi = async () => {
+    return await commonAPI('GET', `${serverUrl}/users`,"")
 }
 
 //api to delete video

@@ -1,40 +1,71 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { Box, Button, TextField, Typography } from '@mui/material';
-import './Auth.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock, faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
+import "./Auth.css";
+import { Link, useNavigate } from "react-router-dom";
+import { Password } from "@mui/icons-material";
+import { getUserApi, registerApi } from "../services/allApi";
 
-function Auth() {
-  const [register, setRegister] = useState(false);
+function Auth({ register }) {
+  const navigate = useNavigate()
+  const [registerUser, setRegisterUser] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const result = await registerApi(registerUser);
+    if (result.status >= 200 && result.status < 300) {
+      alert("Registered Successfully");
+      navigate('/login')
+    }
+  };
+
+  const handleCheck = async(e)=>{
+    e.preventDefault();
+    const result = await getUserApi()
+    console.log(result.data);
+    
+  }
 
   return (
     <div className="login bgd_a">
       <form action="" className="login__form shadow">
-        <h1 className="login__title text-warning">{register ? 'Register' : 'Login'}</h1>
+        <h1 className="login__title text-warning">
+          {register ? "Register" : "Login"}
+        </h1>
 
         <div className="login__content">
-{register &&        <div className="login__box">
-            <FontAwesomeIcon icon={faUser} className="login__icon" />
+          {register && (
+            <div className="login__box">
+              <FontAwesomeIcon icon={faUser} className="login__icon" />
 
-            <div className="login__box-input">
-              <input
-                type="email"
-                required
-                className="login__input"
-                id="login-email"
-                placeholder=" "
-              />
-              <label htmlFor="login-email" className="login__label">
-                Username
-              </label>
+              <div className="login__box-input">
+                <input
+                  type="email"
+                  required
+                  className="login__input"
+                  id="login-email"
+                  placeholder=" "
+                  onChange={(e) =>
+                    setRegisterUser({
+                      ...registerUser,
+                      username: e.target.value,
+                    })
+                  }
+                />
+                <label htmlFor="login-email" className="login__label">
+                  Username
+                </label>
+              </div>
             </div>
-          </div>}
+          )}
 
           <div className="login__box">
-          <FontAwesomeIcon icon={faEnvelope} className="login__icon" />
-
+            <FontAwesomeIcon icon={faEnvelope} className="login__icon" />
 
             <div className="login__box-input">
               <input
@@ -43,6 +74,9 @@ function Auth() {
                 className="login__input"
                 id="login-email"
                 placeholder=" "
+                onChange={(e) =>
+                  setRegisterUser({ ...registerUser, email: e.target.value })
+                }
               />
               <label htmlFor="login-email" className="login__label">
                 Email
@@ -60,6 +94,9 @@ function Auth() {
                 className="login__input"
                 id="login-pass"
                 placeholder=" "
+                onChange={(e) =>
+                  setRegisterUser({ ...registerUser, password: e.target.value })
+                }
               />
               <label htmlFor="login-pass" className="login__label">
                 Password
@@ -68,20 +105,50 @@ function Auth() {
           </div>
         </div>
 
-
-        <Link to={'/landingpage'}>
-          <button type="submit" className="login__button">
-            {register ? 'Register' : 'Login'}
-          </button>
-  
-        </Link>
-        <p className="login__register">
+        <Link to={"/landingpage"}>
           {register ? (
-            <>Already have an account? <Link onClick={() => setRegister(false)}>Login</Link></>
+            <div>
+              <button className="login__button" onClick={handleUpload}>
+                Register
+              </button>
+              <p className="pt-3 text-center">
+                Already a User? Click here to{" "}
+                <Link
+                  to={"/login"}
+                  className="text-warning"
+                  style={{ textDecoration: "none" }}
+                >
+                  Login
+                </Link>
+              </p>
+            </div>
           ) : (
-            <>Don't have an account? <Link onClick={() => setRegister(true)}>Register</Link></>
+            <div>
+              <button className="login__button" onClick={handleCheck}>Login</button>
+              <p className="pt-3 text-center">
+                New User? Click Here to{" "}
+                <Link
+                  to={"/register"}
+                  className="text-warning"
+                  style={{ textDecoration: "none" }}
+                >
+                  Register
+                </Link>
+              </p>
+            </div>
           )}
-        </p>
+        </Link>
+        {/* <p className="login__register">
+          {register ? (
+            <>
+              Already have an account? <Link to={"/login"}>Login</Link>
+            </>
+          ) : (
+            <>
+              Don't have an account? <Link to={"/register"}>Register</Link>
+            </>
+          )}
+        </p> */}
       </form>
     </div>
   );
