@@ -4,7 +4,6 @@ import { faLock, faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Password } from "@mui/icons-material";
 import { getUserApi, registerApi } from "../services/allApi";
 
 function Auth({ register }) {
