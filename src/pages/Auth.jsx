@@ -8,7 +8,7 @@ import { Password } from "@mui/icons-material";
 import { getUserApi, registerApi } from "../services/allApi";
 
 function Auth({ register }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [registerUser, setRegisterUser] = useState({
     username: "",
     password: "",
@@ -17,19 +17,43 @@ function Auth({ register }) {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    const result = await registerApi(registerUser);
-    if (result.status >= 200 && result.status < 300) {
-      alert("Registered Successfully");
-      navigate('/login')
+    const {username,email,password} = registerUser
+    if(!username|| !email || !password){
+      alert("please fill the form completely")
     }
+     else {
+      const res = await getUserApi(registerUser)
+      const regData = res.data;
+      console.log(regData);
+      
+      if (regData.length > 0) {
+        alert("User Already Exist");
+      }
+      else{
+        const result = await registerApi(registerUser);
+        if (result.status >= 200 && result.status < 300) {
+          alert("Registered Successfully");
+          navigate("/login");
+        }
+      }
+    }
+    
   };
 
-  const handleCheck = async(e)=>{
+  const handleCheck = async (e) => {
     e.preventDefault();
-    const result = await getUserApi()
-    console.log(result.data);
+    const result = await getUserApi(registerUser);
+    const loginData = result.data;
+    console.log(loginData);
     
-  }
+    if (loginData.length > 0) {
+      alert("Login Successful");
+      navigate('/landingpage')
+
+    } else {
+      alert("Login Failed");
+    }
+  };
 
   return (
     <div className="login bgd_a">
@@ -45,7 +69,7 @@ function Auth({ register }) {
 
               <div className="login__box-input">
                 <input
-                  type="email"
+                  type="text"
                   required
                   className="login__input"
                   id="login-email"
@@ -124,7 +148,9 @@ function Auth({ register }) {
             </div>
           ) : (
             <div>
-              <button className="login__button" onClick={handleCheck}>Login</button>
+              <button className="login__button" onClick={handleCheck}>
+                Login
+              </button>
               <p className="pt-3 text-center">
                 New User? Click Here to{" "}
                 <Link
