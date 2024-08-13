@@ -4,65 +4,6 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
 function WatchList() {
-  const top100Films = [
-    { label: "NIFTY MIDCAP 100" },
-    { label: "BANKEX" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "BANKEX" },
-    { label: "BANKEX" },
-    { label: "ALLCAP" },
-    { label: "NIFTY COMMODITIES" },
-    { label: "NIFTY50 TR 2X LEV" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-    { label: "NIFTY MIDCAP 100" },
-  ];
-
-  const symbol = "KO";
-  const apiKey = "46834QOT5RZA1N4S";
-  const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${apiKey}`;
-  console.log(apiUrl);
-  fetch(apiUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching the API:", error);
-    });
-
   return (
     <div
       className="shadow"
@@ -71,7 +12,7 @@ function WatchList() {
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        options={top100Films}
+        // options={}
         sx={{ width: "100%" }}
         renderInput={(params) => (
           <TextField

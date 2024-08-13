@@ -8,6 +8,13 @@ function BuyStock() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const[buy, setBuy] = useState({
+    buy:0,
+    qty:0
+  })
+
+  // console.log(buy);
+  
   return (
     <div>
       <div className="d-flex justify-content-center align-items-center">
@@ -41,13 +48,22 @@ function BuyStock() {
         <Modal.Body>
           <div className="row " >
             <div className="col-md-12">
-              <div className="mb-3 mt-5">
+            <div className="mb-3 mt-5">
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Current Value"
+                  className="mb-3"
+                >
+                  <Form.Control type="number" placeholder="1" />
+                </FloatingLabel>
+              </div>
+              <div className="mb-3">
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Qty."
                   className="mb-3"
                 >
-                  <Form.Control type="number" placeholder="1" />
+                  <Form.Control type="number" placeholder="1" onChange={(e)=>setBuy({...buy, buy:e.target.value})}/>
                 </FloatingLabel>
               </div>
               <div className="mb-3">
