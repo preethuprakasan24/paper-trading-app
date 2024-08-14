@@ -25,13 +25,14 @@ function Auth({ register }) {
     const {username,email,password} = registerUser
     if(!username|| !email || !password){
       alert("please fill the form completely")
+
     }
      else {
       const res = await getUserApi(registerUser)
       const regData = res.data;
       console.log(regData);
       
-      if (regData?.length > 0) {
+      if (regData.length > 0) {
         alert("User Already Exist");
       }
       else{
@@ -42,6 +43,7 @@ function Auth({ register }) {
         }
       }
     }
+
     
   };
 
@@ -49,17 +51,15 @@ function Auth({ register }) {
     e.preventDefault();
     const result = await getUserApi(registerUser);
     const loginData = result.data;
-    
+
     console.log(loginData);
     
     if (loginData?.length > 0) {
       alert("Login Successful");
-      
-      dispatch(user(loginData))
-      
-      
+       dispatch(user(loginData))
       navigate('/landingpage')
-      
+
+
     } else {
       alert("Login Failed");
     }
@@ -158,7 +158,9 @@ function Auth({ register }) {
             </div>
           ) : (
             <div>
+
               <button className="login__button" onClick={handleCheck} type="button">
+
                 Login
               </button>
               <p className="pt-3 text-center">
