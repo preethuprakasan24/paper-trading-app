@@ -1,13 +1,56 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-function BuyStock() {
+
+function BuyStock({ buydata, apiData }) {
   const [show, setShow] = useState(false);
+
+  const [buy, setBuy] = useState({
+    buy: 0,
+    qty: 0,
+    price: 0,
+  });
+
+  console.log(buy);
+
+  const [highValue, setHighValue] = useState(null);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  console.log(buydata);
+
+  useEffect(() => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const yesterdayDate = yesterday.toISOString().split("T")[0];
+
+    if (
+      apiData &&
+      apiData["Time Series (Daily)"] &&
+      apiData["Time Series (Daily)"][yesterdayDate]
+    ) {
+      const yesterdayData = apiData["Time Series (Daily)"][yesterdayDate];
+      setHighValue(yesterdayData["2. high"]); // Access the high value for yesterday
+    } else {
+      console.log("No data for yesterday.");
+    }
+  }, [apiData]);
+
+  console.log(highValue);
+
+  useEffect(() => {
+    if (highValue && buy.qty) {
+      setBuy((prevBuy) => ({
+        ...prevBuy,
+        price: highValue * buy.qty,
+      }));
+    }
+  }, [buy.qty, highValue]);
   return (
     <div>
       <div className="d-flex justify-content-center align-items-center">
@@ -35,19 +78,42 @@ function BuyStock() {
       <Modal show={show} onHide={handleClose} size="sm" centered>
         <Modal.Header closeButton>
           <Modal.Title className="text-info" style={{ fontSize: "14px" }}>
-            NIFTY MIDCAP 100
+            {buydata.name}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="row " >
+          <div className="row ">
             <div className="col-md-12">
               <div className="mb-3 mt-5">
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Current Value"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    type="number"
+                    placeholder="1"
+                    value={highValue || ""}
+                    readOnly
+                  />
+                </FloatingLabel>
+              </div>
+              <div className="mb-3">
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Qty."
                   className="mb-3"
                 >
-                  <Form.Control type="number" placeholder="1" />
+                  <Form.Control
+                    type="number"
+                    placeholder="1"
+                    onChange={(e) =>
+                      setBuy((prevBuy) => ({
+                        ...prevBuy,
+                        qty: e.target.value,
+                      }))
+                    }
+                  />
                 </FloatingLabel>
               </div>
               <div className="mb-3">
@@ -56,7 +122,13 @@ function BuyStock() {
                   label="Price"
                   className="mb-3"
                 >
-                  <Form.Control type="number" placeholder="0.05" step="0.05" />
+                  <Form.Control
+                    type="number"
+                    placeholder="0.05"
+                    step="0.05"
+                    value={buy.price}
+                    readOnly
+                  />
                 </FloatingLabel>
               </div>
             </div>

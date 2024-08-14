@@ -4,7 +4,10 @@ import { faLock, faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 import "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
+
 import { getUserApi, registerApi } from "../services/allApi";
+import { useDispatch } from "react-redux";
+import { user } from "../redux/slices/dashSlice";
 
 function Auth({ register }) {
   const navigate = useNavigate();
@@ -13,12 +16,16 @@ function Auth({ register }) {
     password: "",
     email: "",
   });
+  // const [data,setData] = useState([])
+  
+  const dispatch = useDispatch()
 
   const handleUpload = async (e) => {
     e.preventDefault();
     const {username,email,password} = registerUser
     if(!username|| !email || !password){
       alert("please fill the form completely")
+
     }
      else {
       const res = await getUserApi(registerUser)
@@ -36,6 +43,7 @@ function Auth({ register }) {
         }
       }
     }
+
     
   };
 
@@ -43,11 +51,14 @@ function Auth({ register }) {
     e.preventDefault();
     const result = await getUserApi(registerUser);
     const loginData = result.data;
+
     console.log(loginData);
     
-    if (loginData.length > 0) {
+    if (loginData?.length > 0) {
       alert("Login Successful");
+       dispatch(user(loginData))
       navigate('/landingpage')
+
 
     } else {
       alert("Login Failed");
@@ -131,7 +142,7 @@ function Auth({ register }) {
         <Link to={"/landingpage"}>
           {register ? (
             <div>
-              <button className="login__button" onClick={handleUpload}>
+              <button className="login__button" onClick={handleUpload} type="button">
                 Register
               </button>
               <p className="pt-3 text-center">
@@ -147,7 +158,9 @@ function Auth({ register }) {
             </div>
           ) : (
             <div>
-              <button className="login__button" onClick={handleCheck}>
+
+              <button className="login__button" onClick={handleCheck} type="button">
+
                 Login
               </button>
               <p className="pt-3 text-center">
