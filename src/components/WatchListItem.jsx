@@ -21,6 +21,10 @@ const style = {
 
 function WatchListItem() {
   const [company, setCompany] = useState([]);
+  const [buyData, setBuyData] = useState([])
+  const[apiData, setApiData] = useState([])
+  // console.log(buyData);
+  
 
   const companyDetails = async () => {
     const result = await getCompanyDetailsApi();
@@ -35,12 +39,15 @@ function WatchListItem() {
   }, []);
 
   const handleClick = async (item) => {
-    console.log(item);
+    setBuyData(item)
+    // console.log(item.symbol);
+    const symbol = item.symbol
     const data = await fetch(
-      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${item}&outputsize=full&apikey=46834QOT5RZA1N4S`
+      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=46834QOT5RZA1N4S`
     );
     data.json().then((res) => {
       console.log(res);
+      setApiData(res)
     });
   };
 
@@ -49,12 +56,12 @@ function WatchListItem() {
       {company?.map((item) => (
         <div className="  rounded-2 d-flex me-2">
           <ListItem>
-            <button type="button" onClick={() => handleClick(item.symbol)} style={{backgroundColor:"#272b30", color:"white",textAlign:"start"}}>
+            <button type="button" onClick={() => handleClick(item)} style={{backgroundColor:"#272b30", color:"white",textAlign:"start"}}>
               <ListItemText primary={item.name} style={{ fontSize: "13px" }} />
             </button>
           </ListItem>
           <div className="d-flex ms-auto align-items-center">
-            <BuyStock />
+            <BuyStock buydata ={buyData} apiData={apiData}/>
             <SellStock />
             <button
               className="btn  ms-2 "
