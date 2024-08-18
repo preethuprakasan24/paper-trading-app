@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Password } from "@mui/icons-material";
 import { getUserApi, registerApi } from "../services/allApi";
+
 
 function Auth({ register }) {
   const navigate = useNavigate();
@@ -19,7 +22,7 @@ function Auth({ register }) {
     e.preventDefault();
     const {username,email,password} = registerUser
     if(!username|| !email || !password){
-      alert("please fill the form completely")
+      toast.info("please fill the form completely")
     }
      else {
       const res = await getUserApi(registerUser)
@@ -27,12 +30,12 @@ function Auth({ register }) {
       console.log(regData);
       
       if (regData.length > 0) {
-        alert("User Already Exist");
+        toast.warning("User Already Exist");
       }
       else{
         const result = await registerApi(registerUser);
         if (result.status >= 200 && result.status < 300) {
-          alert("Registered Successfully");
+          toast.success("Registered Successfully");
           navigate("/login");
         }
       }
@@ -47,136 +50,139 @@ function Auth({ register }) {
     console.log(loginData);
     
     if (loginData.length > 0) {
-      alert("Login Successful");
+      toast.success("Login Successful");
       navigate('/landingpage')
 
     } else {
-      alert("Login Failed");
+      toast.error("Login Failed");
     }
   };
 
   return (
-    <div className="login bgd_a">
-      <form action="" className="login__form shadow">
-        <h1 className="login__title text-warning">
-          {register ? "Register" : "Login"}
-        </h1>
-
-        <div className="login__content">
-          {register && (
+<>
+      <div className="login bgd_a">
+        <form action="" className="login__form shadow">
+          <h1 className="login__title text-warning">
+            {register ? "Register" : "Login"}
+          </h1>
+  
+          <div className="login__content">
+            {register && (
+              <div className="login__box">
+                <FontAwesomeIcon icon={faUser} className="login__icon" />
+  
+                <div className="login__box-input">
+                  <input
+                    type="text"
+                    required
+                    className="login__input"
+                    id="login-email"
+                    placeholder=" "
+                    onChange={(e) =>
+                      setRegisterUser({
+                        ...registerUser,
+                        username: e.target.value,
+                      })
+                    }
+                  />
+                  <label htmlFor="login-email" className="login__label">
+                    Username
+                  </label>
+                </div>
+              </div>
+            )}
+  
             <div className="login__box">
-              <FontAwesomeIcon icon={faUser} className="login__icon" />
-
+              <FontAwesomeIcon icon={faEnvelope} className="login__icon" />
+  
               <div className="login__box-input">
                 <input
-                  type="text"
+                  type="email"
                   required
                   className="login__input"
                   id="login-email"
                   placeholder=" "
                   onChange={(e) =>
-                    setRegisterUser({
-                      ...registerUser,
-                      username: e.target.value,
-                    })
+                    setRegisterUser({ ...registerUser, email: e.target.value })
                   }
                 />
                 <label htmlFor="login-email" className="login__label">
-                  Username
+                  Email
                 </label>
               </div>
             </div>
-          )}
-
-          <div className="login__box">
-            <FontAwesomeIcon icon={faEnvelope} className="login__icon" />
-
-            <div className="login__box-input">
-              <input
-                type="email"
-                required
-                className="login__input"
-                id="login-email"
-                placeholder=" "
-                onChange={(e) =>
-                  setRegisterUser({ ...registerUser, email: e.target.value })
-                }
-              />
-              <label htmlFor="login-email" className="login__label">
-                Email
-              </label>
+  
+            <div className="login__box">
+              <FontAwesomeIcon icon={faLock} className="login__icon" />
+  
+              <div className="login__box-input">
+                <input
+                  type="password"
+                  required
+                  className="login__input"
+                  id="login-pass"
+                  placeholder=" "
+                  onChange={(e) =>
+                    setRegisterUser({ ...registerUser, password: e.target.value })
+                  }
+                />
+                <label htmlFor="login-pass" className="login__label">
+                  Password
+                </label>
+              </div>
             </div>
           </div>
-
-          <div className="login__box">
-            <FontAwesomeIcon icon={faLock} className="login__icon" />
-
-            <div className="login__box-input">
-              <input
-                type="password"
-                required
-                className="login__input"
-                id="login-pass"
-                placeholder=" "
-                onChange={(e) =>
-                  setRegisterUser({ ...registerUser, password: e.target.value })
-                }
-              />
-              <label htmlFor="login-pass" className="login__label">
-                Password
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <Link to={"/landingpage"}>
-          {register ? (
-            <div>
-              <button className="login__button" onClick={handleUpload}>
-                Register
-              </button>
-              <p className="pt-3 text-center">
-                Already a User? Click here to{" "}
-                <Link
-                  to={"/login"}
-                  className="text-warning"
-                  style={{ textDecoration: "none" }}
-                >
-                  Login
-                </Link>
-              </p>
-            </div>
-          ) : (
-            <div>
-              <button className="login__button" onClick={handleCheck}>
-                Login
-              </button>
-              <p className="pt-3 text-center">
-                New User? Click Here to{" "}
-                <Link
-                  to={"/register"}
-                  className="text-warning"
-                  style={{ textDecoration: "none" }}
-                >
+  
+          <Link to={"/landingpage"}>
+            {register ? (
+              <div>
+                <button className="login__button" onClick={handleUpload}>
                   Register
-                </Link>
-              </p>
-            </div>
-          )}
-        </Link>
-        {/* <p className="login__register">
-          {register ? (
-            <>
-              Already have an account? <Link to={"/login"}>Login</Link>
-            </>
-          ) : (
-            <>
-              Don't have an account? <Link to={"/register"}>Register</Link>
-            </>
-          )}
-        </p> */}
-      </form>
-    </div>
+                </button>
+                <p className="pt-3 text-center">
+                  Already a User? Click here to{" "}
+                  <Link
+                    to={"/login"}
+                    className="text-warning"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Login
+                  </Link>
+                </p>
+              </div>
+            ) : (
+              <div>
+                <button className="login__button" onClick={handleCheck}>
+                  Login
+                </button>
+                <p className="pt-3 text-center">
+                  New User? Click Here to{" "}
+                  <Link
+                    to={"/register"}
+                    className="text-warning"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Register
+                  </Link>
+                </p>
+              </div>
+            )}
+          </Link>
+          {/* <p className="login__register">
+            {register ? (
+              <>
+                Already have an account? <Link to={"/login"}>Login</Link>
+              </>
+            ) : (
+              <>
+                Don't have an account? <Link to={"/register"}>Register</Link>
+              </>
+            )}
+          </p> */}
+        </form>
+      </div>
+      <ToastContainer autoClose = {2000} theme = "colored " position="top-center"/>
+</>
   );
 }
 
